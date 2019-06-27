@@ -55,9 +55,10 @@ ext {
             rxAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
     ]
 
-    timberVersion = '4.7.1'
     commonDependencies = [
-            timber: "com.jakewharton.timber:timber:$timberVersion"
+            timber : 'com.jakewharton.timber:timber:4.7.1',
+            okHttp : 'com.squareup.okhttp3:okhttp:3.14.0',
+            picasso: 'com.squareup.picasso:picasso:2.71828',
     ]
 }
 
