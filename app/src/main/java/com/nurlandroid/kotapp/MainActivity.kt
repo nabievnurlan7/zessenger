@@ -17,10 +17,10 @@ class MainActivity : BaseActivity() {
 
         val msg: String = getString(R.string.someText)
 
-        btnNur.setOnClickListener({
+        btnNur.setOnClickListener {
             Toast.makeText(this@MainActivity, msg, Toast.LENGTH_LONG).show()
             txtNur.text = msg
-        })
+        }
 
         val adapter = MyAdapter(
             listener = { item ->
