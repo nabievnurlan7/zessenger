@@ -14,7 +14,7 @@ abstract class BaseViewHolder<T>(
     private val listener: (T) -> Unit
 ) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(layoutId, parent, false)) {
 
-    fun onBind(item: T) {
+    open fun onBind(item: T) {
         itemView.setOnClickListener {
             listener.invoke(item)
         }
