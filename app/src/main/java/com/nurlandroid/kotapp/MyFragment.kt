@@ -14,7 +14,7 @@ class MyFragment : BaseFragment() {
     private val myViewModel: MyViewModel by viewModel()
     override var layout = R.layout.fragment_main
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         myViewModel.getData().observe(viewLifecycleOwner, Observer { item ->
