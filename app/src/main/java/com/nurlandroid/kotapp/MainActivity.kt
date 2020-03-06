@@ -2,15 +2,17 @@ package com.nurlandroid.kotapp
 
 import android.os.Bundle
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.nurlandroid.kotapp.common.BaseActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.nurlandroid.kotapp.common.CustomFragmentFactory
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
     private val myViewModel: MyViewModel by viewModel()
     private var content: FrameLayout? = null
-    override var layout = R.layout.activity_main
+    private val customFragmentFactory: CustomFragmentFactory by inject()
 
     private val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -36,7 +38,10 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        supportFragmentManager.fragmentFactory = customFragmentFactory
+
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         content = findViewById(R.id.content)
         val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)

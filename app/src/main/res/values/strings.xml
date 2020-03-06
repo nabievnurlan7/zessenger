@@ -2,4 +2,9 @@
     <string name="app_name">KotApp</string>
     <string name="button">Button</string>
     <string name="someText">Salam</string>
+
+    <string name="menu1">Menu 1</string>
+    <string name="menu2">Menu 2</string>
+    <string name="menu3">Menu 3</string>
+
 </resources>
