@@ -14,21 +14,22 @@ class MainActivity : AppCompatActivity() {
 
     private val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_menu -> {
+            R.id.menu_item_1 -> {
                 showFragment(MyFragment())
                 return@OnNavigationItemSelectedListener true
             }
 
-            R.id.navigation_scan -> {
+            R.id.menu_item_2 -> {
                 showFragment(MyFragment())
                 return@OnNavigationItemSelectedListener true
             }
 
-            R.id.navigation_settings -> {
+            R.id.menu_item_3 -> {
                 showFragment(MyFragment())
                 return@OnNavigationItemSelectedListener true
             }
         }
+
         false
     }
 
@@ -40,16 +41,14 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
-
-        val fragment = MyFragment()
-        showFragment(fragment)
+        bottomNavigationView.menu.getItem(1).isChecked = true
     }
 
     private fun showFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
-            .replace(R.id.customFragment, fragment, fragment.javaClass.simpleName)
+            .replace(R.id.fragmentContainer, fragment, fragment.javaClass.simpleName)
             .commit()
     }
 }
