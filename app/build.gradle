@@ -35,7 +35,8 @@ ext {
             roomCompiler    : "androidx.room:room-compiler:$roomVersion",
             coreKtx         : 'androidx.core:core-ktx:1.0.1',
             customTabs      : "androidx.browser:browser:1.0.0",
-            fragmentKtx     : 'androidx.fragment:fragment-ktx:1.0.0'
+            fragmentKtx     : 'androidx.fragment:fragment-ktx:1.0.0',
+            fragmentView    : 'androidx.fragment:fragment:1.2.0-beta02'
     ]
 
     koinVersion = '2.0.1'
@@ -70,6 +71,7 @@ dependencies {
     implementation androidXDependencies.appcompat
     implementation androidXDependencies.materialDesign
     implementation androidXDependencies.constraintLayout
+    implementation androidXDependencies.fragmentView
 
     // Common
     implementation commonDependencies.timber

@@ -1,7 +1,6 @@
 package com.nurlandroid.kotapp
 
 import android.os.Bundle
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -11,26 +10,22 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private val myViewModel: MyViewModel by viewModel()
-    private var content: FrameLayout? = null
     private val customFragmentFactory: CustomFragmentFactory by inject()
 
     private val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_menu -> {
-                val fragment = MyFragment()
-                addFragment(fragment)
+                showFragment(MyFragment())
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.navigation_scan -> {
-                val fragment = MyFragment()
-                addFragment(fragment)
+                showFragment(MyFragment())
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.navigation_settings -> {
-                val fragment = MyFragment()
-                addFragment(fragment)
+                showFragment(MyFragment())
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -43,19 +38,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        content = findViewById(R.id.content)
         val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
 
         val fragment = MyFragment()
-        addFragment(fragment)
+        showFragment(fragment)
     }
 
-    private fun addFragment(fragment: Fragment) {
+    private fun showFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
-            .replace(R.id.content, fragment, fragment.javaClass.simpleName)
+            .replace(R.id.customFragment, fragment, fragment.javaClass.simpleName)
             .commit()
     }
 }
