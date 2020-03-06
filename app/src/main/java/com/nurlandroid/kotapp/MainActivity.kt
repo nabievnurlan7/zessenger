@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener)
 
         val fragment = MyFragment()
         showFragment(fragment)
