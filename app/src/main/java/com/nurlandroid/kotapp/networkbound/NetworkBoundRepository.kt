@@ -10,22 +10,22 @@ abstract class NetworkBoundRepository<RESULTTYPE, REQUESTTYPE>
 internal constructor() {
     private val resultMediator: MediatorLiveData<Resource<RESULTTYPE>> = MediatorLiveData()
 
-    init {
-        val loadedFromDB: LiveData<RESULTTYPE> = loadFromDB()
-        resultMediator.addSource(loadedFromDB) { loadedData ->
-            resultMediator.removeSource(loadedFromDB)
-
-            if (shouldFetch(data)) {
-                resultMediator.postValue(Resource.loading(null, null))
-                fetchFromNetwork(loadedFromDB)
-            } else {
-                resultMediator.addSource<RESULTTYPE>(loadedFromDB) { newData ->
-                    setValue(Resource.success(newData, 1))
-                }
-            }
-
-        }
-    }
+//    init {
+//        val loadedFromDB: LiveData<RESULTTYPE> = loadFromDB()
+//        resultMediator.addSource(loadedFromDB) { loadedData ->
+//            resultMediator.removeSource(loadedFromDB)
+//
+//            if (shouldFetch(data)) {
+//                resultMediator.postValue(Resource.loading(null, null))
+//                fetchFromNetwork(loadedFromDB)
+//            } else {
+//                resultMediator.addSource<RESULTTYPE>(loadedFromDB) { newData ->
+//                    setValue(Resource.success(newData, 1))
+//                }
+//            }
+//
+//        }
+//    }
 
     @MainThread
     private fun setValue(newValue: Resource<RESULTTYPE>) {
@@ -43,10 +43,10 @@ internal constructor() {
     @MainThread
     protected abstract fun loadFromDb(): LiveData<RESULTTYPE>
 
-    @MainThread
-    protected abstract fun fetchService(): LiveData<ApiResponse<REQUESTTYPE>>
-
-    @MainThread
-    protected abstract fun onFetchFailed(envelope: Envelope?)
+//    @MainThread
+//    protected abstract fun fetchService(): LiveData<ApiResponse<REQUESTTYPE>>
+//
+//    @MainThread
+//    protected abstract fun onFetchFailed(envelope: Envelope?)
 }
 

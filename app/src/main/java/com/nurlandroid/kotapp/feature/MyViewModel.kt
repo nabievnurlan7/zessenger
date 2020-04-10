@@ -6,7 +6,7 @@ import com.nurlandroid.kotapp.common.BaseViewModel
 import com.nurlandroid.kotapp.coroutine.DummyInteractor
 import com.nurlandroid.kotapp.coroutine.Post
 
-class MyViewModel(val dummyInteractor: DummyInteractor) : BaseViewModel() {
+class MyViewModel(private val dummyInteractor: DummyInteractor) : BaseViewModel() {
 
     private val data = MutableLiveData<List<Post>>()
 

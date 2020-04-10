@@ -11,7 +11,6 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-    private val myViewModel: MyViewModel by viewModel()
     private val customFragmentFactory: CustomFragmentFactory by inject()
 
     private val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->

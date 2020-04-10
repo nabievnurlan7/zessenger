@@ -12,7 +12,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 val diModule = module {
     single { CustomFragmentFactory() }
-    viewModel { MyViewModel() }
+    viewModel { MyViewModel(get()) }
 
     single { DummyRepository(get()) }
     single { DummyInteractor(get()) }

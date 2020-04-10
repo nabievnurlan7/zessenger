@@ -8,7 +8,6 @@ import com.nurlandroid.kotapp.common.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-
 class MyFragment : BaseFragment() {
     private val myViewModel: MyViewModel by viewModel()
     override var layout = R.layout.fragment_main
