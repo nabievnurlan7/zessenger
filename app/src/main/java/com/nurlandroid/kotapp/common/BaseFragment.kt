@@ -6,9 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-/**
- * Created by nurik on 15.07.2019.
- */
 abstract class BaseFragment : Fragment() {
 
     abstract val layout: Int

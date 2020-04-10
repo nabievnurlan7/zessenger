@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nurlandroid.kotapp.common.CustomFragmentFactory
+import com.nurlandroid.kotapp.feature.MyFragment
+import com.nurlandroid.kotapp.feature.MyViewModel
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

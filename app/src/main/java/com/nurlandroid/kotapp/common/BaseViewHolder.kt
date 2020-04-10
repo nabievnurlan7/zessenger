@@ -5,9 +5,6 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 
-/**
- * Created by nurik on 28.06.2019.
- */
 abstract class BaseViewHolder<T>(
     @LayoutRes layoutId: Int,
     parent: ViewGroup,

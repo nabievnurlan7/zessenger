@@ -2,9 +2,6 @@ package com.nurlandroid.kotapp.common
 
 import androidx.recyclerview.widget.RecyclerView
 
-/**
- * Created by nurik on 28.06.2019.
- */
 abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseViewHolder<T>>() {
     private var items = mutableListOf<T>()
 
