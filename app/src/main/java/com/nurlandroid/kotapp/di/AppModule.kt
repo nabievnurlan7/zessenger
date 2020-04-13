@@ -6,6 +6,7 @@ import com.nurlandroid.kotapp.coroutine.DummyRepository
 import com.nurlandroid.kotapp.coroutine.NetworkApi
 import com.nurlandroid.kotapp.feature.MyViewModel
 import com.nurlandroid.kotapp.networkbound.PostDatabase
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -27,5 +28,5 @@ val diModule = module {
             .create(NetworkApi::class.java)
     }
 
-    single { PostDatabase.getDatabase(get()) }
+    single { PostDatabase.getDatabase(androidContext()) }
 }
