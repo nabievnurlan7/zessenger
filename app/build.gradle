@@ -88,6 +88,9 @@ dependencies {
     implementation androidXDependencies.fragmentView
     implementation androidXDependencies.lifecycleExt
     implementation androidXDependencies.livedataKtx
+    implementation androidXDependencies.roomRuntime
+    implementation androidXDependencies.roomCompiler
+
 
     // Common
     implementation commonDependencies.timber
