@@ -69,6 +69,7 @@ ext {
             gson     : "com.google.code.gson:gson:2.8.5",
             scalars  : "com.squareup.retrofit2:converter-scalars:$retrofitVersion",
             rxAdapter: "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
+            gsonConverter: "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     ]
 
     commonDependencies = [

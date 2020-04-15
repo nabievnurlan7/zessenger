@@ -1,10 +1,9 @@
-package com.nurlandroid.kotapp.networkbound
+package com.nurlandroid.kotapp.feature
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.nurlandroid.kotapp.coroutine.Post
 
 @Database(entities = [Post::class], version = 1, exportSchema = false)
 abstract class PostDatabase : RoomDatabase() {

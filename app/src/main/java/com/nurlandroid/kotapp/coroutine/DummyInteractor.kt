@@ -1,6 +1,10 @@
 package com.nurlandroid.kotapp.coroutine
 
-class DummyInteractor(private val repository: DummyRepository) {
+import androidx.lifecycle.LiveData
+import com.nurlandroid.kotapp.networkbound.PostsRepository
+import com.nurlandroid.kotapp.networkbound.Resource
 
-    suspend fun doWork(): List<Post>? = repository.getPosts().loadedData
+class DummyInteractor(private val repository: PostsRepository) {
+
+//     fun doWork(): LiveData<Resource<List<Post>>> = repository.loadPosts(1)
 }
