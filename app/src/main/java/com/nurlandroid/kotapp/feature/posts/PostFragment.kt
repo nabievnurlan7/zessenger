@@ -1,4 +1,4 @@
-package com.nurlandroid.kotapp.feature
+package com.nurlandroid.kotapp.feature.posts
 
 import android.os.Bundle
 import android.view.View
@@ -11,18 +11,14 @@ import kotlinx.android.synthetic.main.fragment_main.catalogRecyclerView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class MyFragment : BaseFragment() {
-    private val myViewModel: MyViewModel by viewModel()
+class PostFragment : BaseFragment() {
+    private val postViewModel: PostViewModel by viewModel()
     override var layout = R.layout.fragment_main
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        myViewModel.getData().observe(viewLifecycleOwner, Observer { items ->
-            Timber.d("$items")
-        })
-
-        val myAdapter = MyAdapter(
+        val myAdapter = PostAdapter(
             listener = { item ->
                 Timber.d(item.title)
             }
@@ -36,7 +32,7 @@ class MyFragment : BaseFragment() {
             adapter = myAdapter
         }
 
-        myViewModel.getData().observe(viewLifecycleOwner, Observer {
+        postViewModel.posts.observe(viewLifecycleOwner, Observer {
             it?.let {
                 myAdapter.setItems(it)
             }

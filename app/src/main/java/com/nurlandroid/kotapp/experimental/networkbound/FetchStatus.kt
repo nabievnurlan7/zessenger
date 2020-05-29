@@ -1,4 +1,4 @@
-package com.nurlandroid.kotapp.networkbound
+package com.nurlandroid.kotapp.experimental.networkbound
 
 data class FetchStatus(
     var isOnLoading: Boolean = false,

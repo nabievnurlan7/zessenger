@@ -111,6 +111,8 @@ dependencies {
     implementation retrofitDependencies.moshi
     implementation retrofitDependencies.gson
 
+    implementation 'com.squareup.leakcanary:leakcanary-android-instrumentation:2.3'
+
     // View components
     implementation viewComponents.smoothBottomBar
 

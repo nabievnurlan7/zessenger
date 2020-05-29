@@ -1,10 +1,10 @@
-package com.nurlandroid.kotapp.networkbound
+package com.nurlandroid.kotapp.experimental.networkbound
 
-import com.nurlandroid.kotapp.feature.PostDatabase
-import com.nurlandroid.kotapp.coroutine.NetworkApi
+import com.nurlandroid.kotapp.AppDatabase
+import com.nurlandroid.kotapp.NetworkApi
 
 class PostsRepository(
-    val database: PostDatabase,
+    val database: AppDatabase,
     val api: NetworkApi
 ) {
 //    fun loadPosts(page: Int): LiveData<Resource<List<Post>>> {

@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.nurlandroid.kotapp.networkbound
+package com.nurlandroid.kotapp.experimental.networkbound
 
 import androidx.collection.ArrayMap
 import com.google.gson.Gson
@@ -49,12 +49,12 @@ class ApiResponse<T> {
             if (!matcher.find() || matcher.groupCount() != 1) {
                 return null
             }
-          return try {
-            Integer.parseInt(matcher.group(1))
-          } catch (ex: NumberFormatException) {
-            Timber.w("cannot parse next page from %s", next)
-            null
-          }
+            return try {
+                Integer.parseInt(matcher.group(1))
+            } catch (ex: NumberFormatException) {
+                Timber.w("cannot parse next page from %s", next)
+                null
+            }
         }
 
     init {
@@ -99,7 +99,7 @@ class ApiResponse<T> {
             val matcher = LINK_PATTERN.matcher(linkHeader)
             while (matcher.find()) {
                 if (matcher.groupCount() == 2) {
-                  links[matcher.group(2)] = matcher.group(1)
+                    links[matcher.group(2)] = matcher.group(1)
                 }
             }
         }

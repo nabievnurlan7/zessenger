@@ -1,14 +1,13 @@
-package com.nurlandroid.kotapp
+package com.nurlandroid.kotapp.feature
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.nurlandroid.kotapp.R
 import com.nurlandroid.kotapp.common.CustomFragmentFactory
-import com.nurlandroid.kotapp.feature.MyFragment
-import com.nurlandroid.kotapp.feature.MyViewModel
+import com.nurlandroid.kotapp.feature.posts.PostFragment
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
     private val customFragmentFactory: CustomFragmentFactory by inject()
@@ -16,17 +15,17 @@ class MainActivity : AppCompatActivity() {
     private val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.menu_item_1 -> {
-                showFragment(MyFragment())
+                showFragment(PostFragment())
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.menu_item_2 -> {
-                showFragment(MyFragment())
+                showFragment(PostFragment())
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.menu_item_3 -> {
-                showFragment(MyFragment())
+                showFragment(PostFragment())
                 return@OnNavigationItemSelectedListener true
             }
         }

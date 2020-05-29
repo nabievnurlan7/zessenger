@@ -1,4 +1,4 @@
-package com.nurlandroid.kotapp.feature
+package com.nurlandroid.kotapp.feature.posts
 
 import android.os.Parcelable
 import androidx.room.Entity

@@ -1,16 +1,13 @@
-package com.nurlandroid.kotapp.feature
+package com.nurlandroid.kotapp.feature.posts
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import com.nurlandroid.kotapp.feature.posts.Post
 
 @Dao
-interface PostsDao {
+interface PostDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPosts(followers: List<Post>)
 
-    @Query("SELECT * FROM Post")
-    fun getPosts(): LiveData<List<Post>>
 }

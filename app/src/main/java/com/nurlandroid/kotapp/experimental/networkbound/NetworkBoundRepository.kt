@@ -1,16 +1,6 @@
-package com.nurlandroid.kotapp.networkbound
+package com.nurlandroid.kotapp.experimental.networkbound
 
-import androidx.annotation.MainThread
-import androidx.annotation.WorkerThread
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Response
 
 @Suppress("LeakingThis")
 abstract class NetworkBoundRepository<RESULTTYPE, REQUESTTYPE>
