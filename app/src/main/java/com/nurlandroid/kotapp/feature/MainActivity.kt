@@ -9,7 +9,7 @@ import com.nurlandroid.kotapp.common.CustomFragmentFactory
 import com.nurlandroid.kotapp.feature.posts.PostFragment
 import org.koin.android.ext.android.inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val customFragmentFactory: CustomFragmentFactory by inject()
 
     private val navigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -35,9 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         supportFragmentManager.fragmentFactory = customFragmentFactory
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelectedListener)

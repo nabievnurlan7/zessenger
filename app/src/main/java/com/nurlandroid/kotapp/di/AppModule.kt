@@ -1,10 +1,12 @@
 package com.nurlandroid.kotapp.di
 
-import com.nurlandroid.kotapp.common.CustomFragmentFactory
+import com.nurlandroid.kotapp.AppDatabase
 import com.nurlandroid.kotapp.NetworkApi
-import com.nurlandroid.kotapp.feature.posts.PostViewModel
+import com.nurlandroid.kotapp.common.CustomFragmentFactory
 import com.nurlandroid.kotapp.experimental.networkbound.PostsRepository
 import com.nurlandroid.kotapp.feature.posts.PostRepository
+import com.nurlandroid.kotapp.feature.posts.PostViewModel
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -19,11 +21,11 @@ val diModule = module {
 
     single<NetworkApi> {
         Retrofit.Builder()
-            .baseUrl("https://jsonplaceholder.typicode.com")
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-            .create(NetworkApi::class.java)
+                .baseUrl("https://jsonplaceholder.typicode.com")
+                .addConverterFactory(MoshiConverterFactory.create())
+                .build()
+                .create(NetworkApi::class.java)
     }
 //
-//    single { PostDatabase.getDatabase(androidContext()) }
+    single { AppDatabase.getDatabase(androidContext()) }
 }

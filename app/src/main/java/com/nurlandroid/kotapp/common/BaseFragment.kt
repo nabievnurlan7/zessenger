@@ -5,8 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.nurlandroid.kotapp.R
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(R.layout.fragment_posts) {
 
     abstract val layout: Int
 
