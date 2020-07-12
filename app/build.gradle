@@ -59,7 +59,7 @@ ext {
             livedataKtx     : "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     ]
 
-    koinVersion = '2.0.1'
+    koinVersion = '2.1.5'
     koinDependencies = [
             core     : "org.koin:koin-android:$koinVersion",
             scope    : "org.koin:koin-androidx-scope:$koinVersion",
