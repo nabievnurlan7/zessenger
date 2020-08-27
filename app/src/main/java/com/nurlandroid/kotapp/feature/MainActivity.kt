@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nurlandroid.kotapp.R
 import com.nurlandroid.kotapp.common.CustomFragmentFactory
+import com.nurlandroid.kotapp.feature.chat.ChatFragment
 import com.nurlandroid.kotapp.feature.posts.PostFragment
 import org.koin.android.ext.android.inject
 
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             }
 
             R.id.menu_item_2 -> {
-                showFragment(PostFragment())
+                showFragment(ChatFragment())
                 return@OnNavigationItemSelectedListener true
             }
 
@@ -44,9 +45,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private fun showFragment(fragment: Fragment) {
         supportFragmentManager
-            .beginTransaction()
-            .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
-            .replace(R.id.fragmentContainer, fragment, fragment.javaClass.simpleName)
-            .commit()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.design_bottom_sheet_slide_in, R.anim.design_bottom_sheet_slide_out)
+                .replace(R.id.fragmentContainer, fragment, fragment.javaClass.simpleName)
+                .commit()
     }
 }

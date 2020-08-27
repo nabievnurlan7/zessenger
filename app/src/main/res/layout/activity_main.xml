@@ -10,7 +10,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainer"
-        android:name="com.nurlandroid.kotapp.feature.posts.PostFragment"
+        android:name="com.nurlandroid.kotapp.feature.chat.ChatFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:tag="my_fragment"
