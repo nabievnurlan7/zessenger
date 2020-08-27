@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.nurlandroid.kotapp"
+        applicationId "com.nurlandroid.zessenger"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
