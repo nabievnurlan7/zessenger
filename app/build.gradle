@@ -116,6 +116,9 @@ dependencies {
     implementation retrofitDependencies.gson
 
     implementation 'com.squareup.leakcanary:leakcanary-android-instrumentation:2.3'
+    implementation "com.airbnb.android:lottie:3.4.0"
+
+    implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC2'
 
     // View components
     implementation viewComponents.smoothBottomBar

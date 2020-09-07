@@ -9,24 +9,25 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieCompositionFactory;
+import com.airbnb.lottie.LottieTask;
 import com.nurlandroid.kotapp.R;
 
 import java.util.List;
 
 public class MessageListAdapter extends RecyclerView.Adapter {
-    private Context mContext;
     private List<Message> mMessageList;
 
     private static final int VIEW_TYPE_MESSAGE_SENT = 1;
     private static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
 
     public MessageListAdapter(Context context, List<Message> messageList) {
-        mContext = context;
         mMessageList = messageList;
     }
 
     public void setNewMessage(List<Message> messageList) {
-       // mMessageList.clear();
+        // mMessageList.clear();
         mMessageList = messageList;
         notifyDataSetChanged();
     }
@@ -82,37 +83,35 @@ public class MessageListAdapter extends RecyclerView.Adapter {
 
     private class SentMessageHolder extends RecyclerView.ViewHolder {
         TextView messageText, timeText;
+        LottieAnimationView animation;
 
         SentMessageHolder(View itemView) {
             super(itemView);
 
-            messageText = (TextView) itemView.findViewById(R.id.text_message_body);
-            timeText = (TextView) itemView.findViewById(R.id.text_message_time);
+            messageText = itemView.findViewById(R.id.text_message_body);
+            animation = (LottieAnimationView) itemView.findViewById(R.id.userAnimation);
         }
 
         void bind(Message message) {
             messageText.setText(message.getMessage());
-            timeText.setText("11:00");
+            animation.setAnimation(message.getAnimation());
         }
     }
 
     private class ReceivedMessageHolder extends RecyclerView.ViewHolder {
         TextView messageText, timeText, nameText;
         ImageView profileImage;
+        LottieAnimationView animation;
 
         ReceivedMessageHolder(View itemView) {
             super(itemView);
-
             messageText = (TextView) itemView.findViewById(R.id.text_message_body);
-            timeText = (TextView) itemView.findViewById(R.id.text_message_time);
-            nameText = (TextView) itemView.findViewById(R.id.text_message_name);
-            profileImage = (ImageView) itemView.findViewById(R.id.image_message_profile);
+            animation = itemView.findViewById(R.id.sendedAnimation);
         }
 
         void bind(Message message) {
             messageText.setText(message.getMessage());
-            timeText.setText("11:00");
-            nameText.setText(message.getSender().getNickname());
+            animation.setAnimation(message.getAnimation());
         }
     }
 }
