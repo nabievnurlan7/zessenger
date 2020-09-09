@@ -1,13 +1,8 @@
 package com.nurlandroid.kotapp.feature.chat
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
-import android.animation.PropertyValuesHolder
-import android.graphics.Point
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.Display
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -28,7 +23,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
             Message(message = "Hello", sender = User("Nikita", profileUrl = ""), animation = R.raw.kapu29),
             Message(message = "Hi", sender = User("Me", profileUrl = ""), animation = R.raw.kote3),
             Message(message = "How are you?", sender = User("Nikita", profileUrl = ""), animation = R.raw.kapu26),
-            Message(message = "Blblalbla", sender = User("Me", profileUrl = ""), animation = R.raw.kote2),
+            Message(message = "Angry", sender = User("Me", profileUrl = ""), animation = R.raw.kote2),
             Message(message = "Blblalbla", sender = User("Me", profileUrl = ""), animation = R.raw.kote1)
     )
 
@@ -49,14 +44,21 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
             val typedText = edittext_chatbox.text.toString()
             val myMessage = Message(typedText, sender = User("Me", profileUrl = ""), animation = 0)
 
-            if (typedText == "sleep") {
-                myAnimation.setAnimation(R.raw.kote14)
-                myAnimation.tag = R.raw.kote14
-                myAnimation.playAnimation()
+            when (typedText) {
+                "Sleep" -> {
+                    myAnimation.setAnimation(R.raw.kote14)
+                    myAnimation.tag = R.raw.kote14
+                    myAnimation.playAnimation()
 
-                myMessage.animation = R.raw.kote14
-            } else {
-                myMessage.animation = R.raw.kote1
+                    myMessage.animation = R.raw.kote14
+                }
+                "Fight" -> {
+                    animateExit()
+                    myMessage.animation = R.raw.kapu11
+                }
+                else -> {
+                    myMessage.animation = R.raw.kote1
+                }
             }
 
             messageList.add(myMessage)
@@ -65,8 +67,6 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
             messageAdapter.setNewMessage(messageList)
             edittext_chatbox.text.clear()
             scrollToBottom()
-
-
         }
 
         edittext_chatbox.addTextChangedListener(object : TextWatcher {
@@ -75,9 +75,11 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                changeAnimationOnTyping(s)
+              //  changeAnimationOnTyping(s)
             }
         })
+
+        animateEnter()
     }
 
     private fun changeAnimationOnTyping(s: CharSequence) {
@@ -105,27 +107,31 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
                 })
     }
 
-    private fun animate() {
-        val display: Display = requireActivity().windowManager.defaultDisplay
-        val point = Point()
-        display.getSize(point)
-        val width: Int = point.x // screen width
+    private fun animateEnter() {
+        Animations.animate(Animations.bounceInRight(myAnimation))
+        Animations.animate(Animations.bounceInLeft(senderAnimation))
+    }
 
-        val halfW = width / 2.0f
+    private fun animateExit() {
+        Animations.animate(Animations.slideOutRight(myAnimation))
+        Animations.animate(Animations.slideOutLeft(senderAnimation))
 
-        val animatorSet = AnimatorSet()
-        val lftToRgt = ObjectAnimator.ofFloat(senderAnimation, "translationX", 0f, halfW)
-                .setDuration(700)
+        Animations.bounceIn(commonAnimation)
 
-        val scaleDown = ObjectAnimator.ofPropertyValuesHolder(myContainer,
-                PropertyValuesHolder.ofFloat("scaleX", 0.5f),
-                PropertyValuesHolder.ofFloat("scaleY", 0.5f))
-        scaleDown.duration = 1000
+        commonAnimation.visibility = View.VISIBLE
+        commonAnimation.setAnimation(R.raw.kapu11)
+        commonAnimation.tag = R.raw.kapu11
+        commonAnimation.playAnimation()
 
-        animatorSet.play(scaleDown)
-//        animatorSet.start()
+        KeyboardUtils.hideKeyboard(requireActivity())
 
-        animateBar()
+       // myAnimation.pauseAnimation()
+       // myAnimation.clearAnimation()
+       // senderAnimation.pauseAnimation()
+       // senderAnimation.clearAnimation()
+
+//        myAnimation.visibility = View.INVISIBLE
+//        senderAnimation.visibility = View.INVISIBLE
     }
 
     private fun animateBar() {

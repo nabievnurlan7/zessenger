@@ -39,6 +39,7 @@
             android:layout_width="160dp"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
@@ -47,10 +48,25 @@
             app:lottie_rawRes="@raw/kapu29" />
 
         <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/commonAnimation"
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_cacheComposition="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/kapu1" />
+
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/myAnimation"
             android:layout_width="160dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
