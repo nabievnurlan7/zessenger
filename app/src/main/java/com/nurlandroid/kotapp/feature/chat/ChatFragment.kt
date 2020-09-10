@@ -34,48 +34,49 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
         messageAdapter = MessageListAdapter(requireContext(), messageList)
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
-        reyclerview_message_list.apply {
+        messageRecyclerView.apply {
             adapter = messageAdapter
             layoutManager = linearLayoutManager
         }
 
-        button_chatbox_send.setOnClickListener {
+        sendButton.setOnClickListener {
+            val typedText = chatEditText.text.toString()
+            if (typedText.isNotEmpty()) {
+                val myMessage = Message(typedText, sender = User("Me", profileUrl = ""), animation = 0)
 
-            val typedText = edittext_chatbox.text.toString()
-            val myMessage = Message(typedText, sender = User("Me", profileUrl = ""), animation = 0)
+                when (typedText) {
+                    "Sleep" -> {
+                        myAnimation.setAnimation(R.raw.kote14)
+                        myAnimation.tag = R.raw.kote14
+                        myAnimation.playAnimation()
 
-            when (typedText) {
-                "Sleep" -> {
-                    myAnimation.setAnimation(R.raw.kote14)
-                    myAnimation.tag = R.raw.kote14
-                    myAnimation.playAnimation()
+                        myMessage.animation = R.raw.kote14
+                    }
+                    "Fight" -> {
+                        animateExit()
+                        myMessage.animation = R.raw.kapu11
+                    }
+                    else -> {
+                        myMessage.animation = R.raw.kote1
+                    }
+                }
 
-                    myMessage.animation = R.raw.kote14
-                }
-                "Fight" -> {
-                    animateExit()
-                    myMessage.animation = R.raw.kapu11
-                }
-                else -> {
-                    myMessage.animation = R.raw.kote1
-                }
+                messageList.add(myMessage)
+                messageList.add(Message("$typedText its fine =)", sender = User("Nikita", profileUrl = ""), animation = R.raw.kapu29))
+
+                messageAdapter.setNewMessage(messageList)
+                chatEditText.text.clear()
+                scrollToBottom()
             }
-
-            messageList.add(myMessage)
-            messageList.add(Message("$typedText its fine =)", sender = User("Nikita", profileUrl = ""), animation = R.raw.kapu29))
-
-            messageAdapter.setNewMessage(messageList)
-            edittext_chatbox.text.clear()
-            scrollToBottom()
         }
 
-        edittext_chatbox.addTextChangedListener(object : TextWatcher {
+        chatEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-              //  changeAnimationOnTyping(s)
+                //changeAnimationOnTyping(s)
             }
         })
 
@@ -108,30 +109,28 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
     }
 
     private fun animateEnter() {
-        Animations.animate(Animations.bounceInRight(myAnimation))
-        Animations.animate(Animations.bounceInLeft(senderAnimation))
+        Animations.animateGroup(
+                listOf(
+                        Animations.bounceInRight(myAnimation, blockStart = { myAnimation.visibility = View.VISIBLE }),
+                        Animations.bounceInLeft(senderAnimation)
+                )
+        )
     }
 
     private fun animateExit() {
         Animations.animate(Animations.slideOutRight(myAnimation))
         Animations.animate(Animations.slideOutLeft(senderAnimation))
 
-        Animations.bounceIn(commonAnimation)
-
-        commonAnimation.visibility = View.VISIBLE
-        commonAnimation.setAnimation(R.raw.kapu11)
-        commonAnimation.tag = R.raw.kapu11
-        commonAnimation.playAnimation()
-
-        KeyboardUtils.hideKeyboard(requireActivity())
-
-       // myAnimation.pauseAnimation()
-       // myAnimation.clearAnimation()
-       // senderAnimation.pauseAnimation()
-       // senderAnimation.clearAnimation()
-
-//        myAnimation.visibility = View.INVISIBLE
-//        senderAnimation.visibility = View.INVISIBLE
+        Animations.bounceIn(
+                target = commonAnimation,
+                duration = 1000,
+                blockStart = {
+                    KeyboardUtils.hideKeyboard(requireActivity())
+                    commonAnimation.visibility = View.VISIBLE
+                    commonAnimation.setAnimation(R.raw.kapu11)
+                    commonAnimation.tag = R.raw.kapu11
+                    commonAnimation.playAnimation()
+                })
     }
 
     private fun animateBar() {
@@ -176,7 +175,7 @@ class ChatFragment : Fragment(R.layout.fragment_chat) {
 
     private fun scrollToBottom() {
         if (messageList.isNotEmpty()) {
-            reyclerview_message_list.smoothScrollToPosition(messageList.size - 1)
+            messageRecyclerView.smoothScrollToPosition(messageList.size - 1)
         }
     }
 }
